@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'json'
 
 class Disjunction
@@ -16,7 +17,7 @@ class Disjunction
 
   # @return [Boolean]
   def evaluate(*terms)
-    self.statement1.evaluate(*terms) || self.statement2.evaluate(*terms)
+    statement1.evaluate(*terms) || statement2.evaluate(*terms)
   end
 
   # @return [String]
@@ -26,7 +27,7 @@ class Disjunction
 
   # @return [String]
   def to_json(config = nil)
-    self.to_h.to_json(config)
+    to_h.to_json(config)
   end
 
   # @param [Hash] hash the disjunction data hash
@@ -45,12 +46,11 @@ class Disjunction
   # @return [Hash]
   def to_h
     {
-      type: "disjunction",
+      type: 'disjunction',
       data: {
-        left_operand: self.statement1.to_h,
-        right_operand: self.statement2.to_h
+        left_operand: statement1.to_h,
+        right_operand: statement2.to_h
       }
     }
   end
-
 end

@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem 'rspec'
-gem 'rake', '~> 13.0', '>= 13.0.6'
 gem 'json'
+gem 'rake', '~> 13.0', '>= 13.0.6'
+gem 'rspec'
+
+group 'development' do
+  gem 'rubocop', require: false
+end

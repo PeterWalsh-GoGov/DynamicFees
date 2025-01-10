@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Predicate
-
   # @return [String]
   attr_accessor :operator
   # @return [Variable, Constant] the first term of the predicate
@@ -23,10 +22,10 @@ class Predicate
   # @return [Boolean]
   def evaluate(*terms)
     term1_assignment = terms.find { |variable| variable.name == term1.name }
-    term1.value = term1_assignment.value if term1_assignment != nil
+    term1.value = term1_assignment.value unless term1_assignment.nil?
 
     term2_assignment = terms.find { |variable| variable.name == term2.name }
-    term2.value = term2_assignment.value if term2_assignment != nil
+    term2.value = term2_assignment.value unless term2_assignment.nil?
 
     term1_value = term1.value
     term2_value = term2.value
@@ -36,6 +35,7 @@ class Predicate
     return Operator.greater_than(term1_value, term2_value) if operator == Operator::GREATER_THAN
     return Operator.greater_than_or_equal(term1_value, term2_value) if operator == Operator::GREATER_THAN_OR_EQUAL
     return Operator.contains(term1_value, term2_value) if operator == Operator::CONTAINS
+
     false
   end
 
@@ -46,7 +46,7 @@ class Predicate
 
   # @return [String]
   def to_json(config)
-    self.to_h.to_json(config)
+    to_h.to_json(config)
   end
 
   # @param [Hash] hash the hash with the predicate data
@@ -67,23 +67,22 @@ class Predicate
   # @return [Hash]
   def to_h
     {
-      type: "predicate",
+      type: 'predicate',
       data: {
-        operator: self.operator,
-        first_term: self.term1.to_h,
-        second_term: self.term2.to_h
+        operator: operator,
+        first_term: term1.to_h,
+        second_term: term2.to_h
       }
     }
   end
 
-
   module Operator
-    LESS_THAN = "lt"
-    LESS_THAN_OR_EQUAL = "lte"
-    GREATER_THAN = "gt"
-    GREATER_THAN_OR_EQUAL = "gte"
-    EQUAL = "eq"
-    CONTAINS = "in"
+    LESS_THAN = 'lt'
+    LESS_THAN_OR_EQUAL = 'lte'
+    GREATER_THAN = 'gt'
+    GREATER_THAN_OR_EQUAL = 'gte'
+    EQUAL = 'eq'
+    CONTAINS = 'in'
 
     def self.less_than(value1, value2)
       value1 < value2
@@ -104,11 +103,5 @@ class Predicate
     def self.contains(value1, value2)
       value1.include?(value2)
     end
-
   end
-
 end
-
-
-
-

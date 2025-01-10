@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Negation
-
   # @return [#evaluate(*terms)]
   attr_accessor :statement
 
@@ -13,7 +12,7 @@ class Negation
   #
   # @return [Boolean]
   def evaluate(*terms)
-    !self.statement.evaluate(*terms)
+    !statement.evaluate(*terms)
   end
 
   # @return [String] the Negation as a pretty-printed stringified JSON object
@@ -23,7 +22,7 @@ class Negation
 
   # @return [String] the Negation as a stringified JSON object
   def to_json(config)
-    self.to_h.to_json(config)
+    to_h.to_json(config)
   end
 
   # @param [Hash] hash the hash data
@@ -38,11 +37,10 @@ class Negation
   # @return [Hash] the negation as a hash
   def to_h
     {
-      type: "negation",
+      type: 'negation',
       data: {
-        statement: self.statement.to_h
+        statement: statement.to_h
       }
     }
   end
-
 end

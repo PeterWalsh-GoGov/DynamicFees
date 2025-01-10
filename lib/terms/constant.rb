@@ -1,8 +1,8 @@
 # frozen_string_literal: true
+
 require 'json'
 
 class Constant
-
   # @return [Integer, String, Array, Time, nil]
   attr_accessor :value
 
@@ -23,7 +23,7 @@ class Constant
 
   # @return [String]
   def to_json(config)
-    self.to_h.to_json(config)
+    to_h.to_json(config)
   end
 
   # @param [Hash] the hash with the data for the constant
@@ -37,11 +37,10 @@ class Constant
   # @return [Hash]
   def to_h
     {
-      type: "constant",
+      type: 'constant',
       data: {
-        value: self.value
+        value: value
       }
     }
   end
-
 end

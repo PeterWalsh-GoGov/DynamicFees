@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Variable
-
   # @return [String] name
   attr_accessor :name
   # @return [Integer, String, Array, nil]
@@ -20,7 +19,7 @@ class Variable
 
   # @return [String]
   def to_json(config)
-    self.to_h.to_json(config)
+    to_h.to_json(config)
   end
 
   # @param [Hash] the hash with the data for the variable
@@ -28,18 +27,18 @@ class Variable
   # @return [Variable] the variable
   def self.from_h(hash)
     name = hash['name']
-    raise "Field 'name' not found" if hash == nil
+    raise "Field 'name' not found" if hash.nil?
+
     Variable.new(name)
   end
 
   # @return [Hash]
   def to_h
     {
-      type: "variable",
+      type: 'variable',
       data: {
-        name: self.name,
+        name: name
       }
     }
   end
-
 end
