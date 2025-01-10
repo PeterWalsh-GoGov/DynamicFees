@@ -49,6 +49,21 @@ class Predicate
     self.to_h.to_json(config)
   end
 
+  # @param [Hash] hash the hash with the predicate data
+  #
+  # @return [Predicate] the predicate constructed from the
+  def self.from_h(hash)
+    operator = hash['operator']
+
+    first_term_data = hash['first_term']
+    first_term = Term.from_h(first_term_data)
+
+    second_term_data = hash['second_term']
+    second_term = Term.from_h(second_term_data)
+
+    Predicate.new(operator, first_term, second_term)
+  end
+
   # @return [Hash]
   def to_h
     {
@@ -63,12 +78,12 @@ class Predicate
 
 
   module Operator
-    LESS_THAN =
-    LESS_THAN_OR_EQUAL = "LESS_THAN_OR_EQUAL"
-    GREATER_THAN = "GREATER_THAN"
-    GREATER_THAN_OR_EQUAL = "GREATER_THAN_OR_EQUAL"
-    EQUAL = "EQUAL"
-    CONTAINS = "CONTAINS"
+    LESS_THAN = "lt"
+    LESS_THAN_OR_EQUAL = "lte"
+    GREATER_THAN = "gt"
+    GREATER_THAN_OR_EQUAL = "gte"
+    EQUAL = "eq"
+    CONTAINS = "in"
 
     def self.less_than(value1, value2)
       value1 < value2

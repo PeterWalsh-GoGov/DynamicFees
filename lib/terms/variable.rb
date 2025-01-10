@@ -23,6 +23,15 @@ class Variable
     self.to_h.to_json(config)
   end
 
+  # @param [Hash] the hash with the data for the variable
+  #
+  # @return [Variable] the variable
+  def self.from_h(hash)
+    name = hash['name']
+    raise "Field 'name' not found" if hash == nil
+    Variable.new(name)
+  end
+
   # @return [Hash]
   def to_h
     {

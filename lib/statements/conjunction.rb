@@ -30,6 +30,16 @@ class Conjunction
     self.to_h.to_json(config)
   end
 
+  def self.from_h(hash)
+    left_operand_data = hash['left_operand']
+    left_operand = Statement.from_h(left_operand_data)
+
+    right_operand_data = hash['right_operand']
+    right_operand = Statement.from_h(right_operand_data)
+
+    Conjunction.new(left_operand, right_operand)
+  end
+
   # @return [Hash]
   def to_h
     {

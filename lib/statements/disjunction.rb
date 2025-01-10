@@ -29,6 +29,19 @@ class Disjunction
     self.to_h.to_json(config)
   end
 
+  # @param [Hash] hash the disjunction data hash
+  #
+  # @return [Disjunction] the disjunction created from the hash
+  def self.from_h(hash)
+    left_operand_data = hash['left_operand']
+    left_operand = Statement.from_h(left_operand_data)
+
+    right_operand_data = hash['right_operand']
+    right_operand = Statement.from_h(right_operand_data)
+
+    Disjunction.new(left_operand, right_operand)
+  end
+
   # @return [Hash]
   def to_h
     {

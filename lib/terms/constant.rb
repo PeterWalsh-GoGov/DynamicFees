@@ -26,6 +26,14 @@ class Constant
     self.to_h.to_json(config)
   end
 
+  # @param [Hash] the hash with the data for the constant
+  #
+  # @return [Constant] the constant generated from the hash
+  def self.from_h(hash)
+    value = hash['value']
+    Constant.new(value)
+  end
+
   # @return [Hash]
   def to_h
     {
