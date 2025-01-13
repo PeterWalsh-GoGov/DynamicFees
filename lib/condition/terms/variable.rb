@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Variable
-  # @return [String] name
+  # @return [String] the name of the variable
   attr_accessor :name
-  # @return [Integer, String, Array, nil]
+  # @return [Integer, String, Array, nil] the value assigned tot eh variable
   attr_accessor :value
 
   # @param [String] name the name of the variable
@@ -12,17 +12,17 @@ class Variable
     self.value = nil
   end
 
-  # @return [String]
+  # @return [String] the Variable as a pretty-printed stringified JSON object
   def to_s
     JSON.pretty_generate(self)
   end
 
-  # @return [String]
+  # @return [String] the Variable as a stringified JSON object
   def to_json(config)
     to_h.to_json(config)
   end
 
-  # @param [Hash] the hash with the data for the variable
+  # @param [Hash] hash the hash with the data for the variable
   #
   # @return [Variable] the variable
   def self.from_h(hash)
@@ -32,7 +32,17 @@ class Variable
     Variable.new(name)
   end
 
-  # @return [Hash]
+  # Converts the Variable to a hash
+  # @example
+  #
+  #   {
+  #     type: 'variable',
+  #     data: {
+  #       name: 'age'
+  #     }
+  #   }
+  #
+  # @return [Hash] the Variable as a hash
   def to_h
     {
       type: 'variable',

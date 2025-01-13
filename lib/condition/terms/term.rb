@@ -1,4 +1,7 @@
 # frozen_string_literal: true
+require_relative './constant'
+require_relative './variable'
+
 
 module Term
   # @param [Hash] hash the term data

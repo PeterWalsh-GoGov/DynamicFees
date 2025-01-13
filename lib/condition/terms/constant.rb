@@ -2,6 +2,7 @@
 
 require 'json'
 
+# A constant in a condition - 1, "Hello", ["a", "b", "c"], etc.
 class Constant
   # @return [Integer, String, Array, Time, nil]
   attr_accessor :value

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative '../terms/ms/term'
+
 class Predicate
   # @return [String]
   attr_accessor :operator

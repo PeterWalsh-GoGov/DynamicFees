@@ -1,0 +1,18 @@
+{
+  "type": "predicate",
+  "data": {
+    "operator": "gte",
+    "first_term": {
+      "type": "variable",
+      "data": {
+        "name": "age"
+      }
+    },
+    "second_term": {
+      "type": "constant",
+      "data": {
+        "value": 18
+      }
+    }
+  }
+}
